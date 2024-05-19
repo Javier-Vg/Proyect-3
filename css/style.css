@@ -2,16 +2,31 @@
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-template-rows: 200px 200px 200px;
-    text-align: center;
-    
     justify-content: center;
     padding: 45px;
     background-color: cornflowerblue;
     border-radius: 15px;
     width: 600px;
-    margin-left: 500px;
+    position: relative;
+    z-index: 1;
+    margin: auto;
+
+    
+    
+    
     
 }
+
+.capa{
+    z-index: 2;
+    position: absolute;
+    background-color: #0004;
+    height: 690px;
+    width: 690px;
+    margin-left: 610px;
+    border-radius: 10px;
+} 
+
 .cajasCont1:first-child{
     border-top: none;
     
@@ -51,7 +66,9 @@
 .cajasCont1{
     border: 5px solid white;
     border-radius: 25px;
-
+    text-align: center;
+    
+   
 }
 
 h2{
@@ -64,17 +81,27 @@ h2{
     border-radius: 5px;
     color: aliceblue;
     background-color: blueviolet;
-    margin-left: 800px;
+    margin-left: 900px;
 }
 
 .equis{
     width: 200px;
     height: 200px; 
-    
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .circulo{
     width: 150px;
     height: 150px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.visible{
+    opacity: 1;
+    transform: translateY(0);
 }
 
