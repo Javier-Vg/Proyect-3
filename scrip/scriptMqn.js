@@ -54,17 +54,16 @@ box1.addEventListener("click", function(){
         equis.offsetHeight;
         equis.classList.add('visible');
 
-        setTimeout(Maquina, 1000);
-
     }
     
-
     if (ganador(matriz) == "x") {
         alert("El jugador X for the win");
         capa.style.display = "inline-block";
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 
 
@@ -82,10 +81,9 @@ box2.addEventListener("click", function(){
         box2.appendChild(equis);
         matriz[0][1] = "x";
         trueFalse = false;
-
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
 
     if (ganador(matriz) == "x") {
@@ -94,6 +92,8 @@ box2.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -112,7 +112,7 @@ box3.addEventListener("click", function(){
 
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        setTimeout(Maquina, 1000);
     }
 
     //validamos si lo que devuelve es true para saber que alguien ganó
@@ -138,10 +138,9 @@ box4.addEventListener("click", function(){
         box4.appendChild(equis);
         matriz[1][0] = "x";
         trueFalse = false;
-
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
 
 
@@ -151,6 +150,8 @@ box4.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -166,10 +167,9 @@ box5.addEventListener("click", function(){
         box5.appendChild(equis);
         matriz[1][1] = "x";
         trueFalse = false;
-
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
 
 
@@ -179,6 +179,8 @@ box5.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -197,7 +199,7 @@ box6.addEventListener("click", function(){
 
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+       
     }
     
     if (ganador(matriz) == "x") {
@@ -206,6 +208,8 @@ box6.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -224,7 +228,7 @@ box7.addEventListener("click", function(){
 
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
 
 
@@ -234,6 +238,8 @@ box7.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -252,7 +258,7 @@ box8.addEventListener("click", function(){
 
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
 
 
@@ -262,6 +268,8 @@ box8.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
@@ -280,7 +288,7 @@ box9.addEventListener("click", function(){
 
         equis.offsetHeight;
         equis.classList.add('visible');
-        setTimeout(Maquina, 2000);
+        
     }
     console.log(matriz)
 
@@ -290,6 +298,8 @@ box9.addEventListener("click", function(){
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
+    }else{
+        setTimeout(Maquina, 1000);
     };
 });
 
