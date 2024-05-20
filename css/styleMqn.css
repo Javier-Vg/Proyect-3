@@ -95,8 +95,8 @@ h2{
 .circulo{
     width: 150px;
     height: 150px;
-    opacity: 0;
     margin-top: 20px;
+    opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }

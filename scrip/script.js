@@ -36,6 +36,7 @@ sonido9.src = "/Proyect-3/sonidos/interface-124464.mp3";
 
 let trueFalse = true;
 
+
 let matriz = [
     ["","",""],
     ["","",""],
@@ -398,6 +399,7 @@ box9.addEventListener("click", function(){
             
         }else{
             equis.className = "circulo";
+            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
             box9.appendChild(equis);
             matriz[2][2] = "o";
             trueFalse = true;
@@ -459,6 +461,7 @@ function ganador(matriz) {
         }else{
             break;
         }
+        
         if (EspacioOcupado == 3) {
             alert("EMPATE, vuelva a jugar...");
             capa.style.display = "inline-block";
