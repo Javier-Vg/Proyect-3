@@ -6,13 +6,14 @@ let boxes = document.querySelectorAll(".cajasCont1");
 
 let trueFalse = true;
 
-console.log(boxes);
-
 function handleClick(evento) {
     //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
     //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
 
+    //
+    let cajaTarget= evento.currentTarget.getAttribute("id");
 
+    let cajaGetElemento = document.getElementById(cajaTarget);
 
     console.log(evento.currentTarget.getAttribute("i"));
     console.log(evento.currentTarget.getAttribute("j"));
@@ -21,35 +22,33 @@ function handleClick(evento) {
 
     let columna = evento.currentTarget.getAttribute("j");
 
-
     let equis = document.createElement("img");
+    
     
     if (trueFalse == true) {
 
         //corregi el box1 por la caja que tengas:----------------------------------------------------
-        if (box1.innerHTML != "") {
+        if (cajaGetElemento.innerHTML != "") {
             alert("Este espacio esta jugado");
             
         }else{
             equis.className = "equis";
             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box1.appendChild(equis);
+            cajaGetElemento.appendChild(equis);
             matriz[fila][columna] = "x";
             trueFalse = false;
-
-            console.log(matriz[fila][columna]);
 
             equis.offsetHeight;
             equis.classList.add('visible');
         }
     }else{
-        if (box1.innerHTML != "") {
+        if (cajaGetElemento.innerHTML != "") {
             alert("Este espacio esta jugado!");
             
         }else{
             equis.className = "circulo";
             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box1.appendChild(equis);
+            cajaGetElemento.appendChild(equis);
             matriz[fila][columna] = "o";
             trueFalse = true;
 
@@ -74,14 +73,14 @@ function handleClick(evento) {
 
     console.log(matriz);
 }
-
+//-----------------------------------------------------------------------------------------------------
 for (let index = 0; index < boxes.length; index++) {
 
     console.log(boxes[index]);
     boxes[index].addEventListener("click", handleClick);
 
 }
-
+//------------------------------------------------------------------------------------------------------
 let capa = document.querySelector(".capa");
 
 let totalWinsX = 0;
@@ -676,6 +675,7 @@ function ganador(matriz) {
 
 
 btn1.addEventListener("click", function(){
+    
     window.location.reload();
     
 
