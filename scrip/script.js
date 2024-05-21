@@ -12,28 +12,27 @@ function handleClick(evento) {
     //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
     //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
 
+    //Extraigo el ID desde el evento del la funcion, para despues agregarlo en el getElementId, para luego tomarlos como referencia al agregarlo al HTML con el appendChild
+    let idString = evento.currentTarget.getAttribute("id");
 
-
-    console.log(evento.currentTarget.getAttribute("i"));
-    console.log(evento.currentTarget.getAttribute("j"));
+    let IdDelDom = document.getElementById(idString);
 
     let fila = evento.currentTarget.getAttribute("i");
 
     let columna = evento.currentTarget.getAttribute("j");
 
-
     let equis = document.createElement("img");
-    
+
     if (trueFalse == true) {
 
         //corregi el box1 por la caja que tengas:----------------------------------------------------
-        if (box1.innerHTML != "") {
+        if (IdDelDom.innerHTML != "") {
             alert("Este espacio esta jugado");
             
         }else{
             equis.className = "equis";
             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box1.appendChild(equis);
+            IdDelDom.appendChild(equis);
             matriz[fila][columna] = "x";
             trueFalse = false;
 
@@ -43,13 +42,13 @@ function handleClick(evento) {
             equis.classList.add('visible');
         }
     }else{
-        if (box1.innerHTML != "") {
+        if (IdDelDom.innerHTML != "") {
             alert("Este espacio esta jugado!");
             
         }else{
             equis.className = "circulo";
             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box1.appendChild(equis);
+            IdDelDom.appendChild(equis);
             matriz[fila][columna] = "o";
             trueFalse = true;
 
@@ -59,6 +58,7 @@ function handleClick(evento) {
     }
 
     if (ganador(matriz) == "x") {
+
         alert("El jugador X for the win");
         capa.style.display = "inline-block";
         ++totalWinsX;
@@ -70,6 +70,36 @@ function handleClick(evento) {
         ++totalWinsO;
         localStorage.setItem("OWins",totalWinsO );
         
+    }else{
+
+    //Verifica si el conetendor esta lleno, y declara el empate:
+     let EspacioOcupado = 0;
+
+     for (let i = 0; i < matriz.length; i++) {
+         if (matriz[0][i] != "") {
+             if(matriz[1][i] != ""){
+                 if(matriz[2][i]){
+                     ++EspacioOcupado;
+                 }else{
+                     break;
+                 }
+             }else{
+                 break;
+             }
+         }else{
+             break;
+         }
+        
+        if (EspacioOcupado == 3) {
+            
+             alert("EMPATE, vuelva a jugar...");
+             capa.style.display = "inline-block";
+             ++totalEmpate;
+             localStorage.setItem("Empate",totalEmpate );
+             break;
+         }
+     };
+
     };
 
     console.log(matriz);
@@ -121,426 +151,6 @@ let matriz = [
     ["","",""]
 ];
 
-// box1.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-//     if (trueFalse == true) {
-//         if (box1.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box1.appendChild(equis);
-//             matriz[0][0] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box1.innerHTML != "") {
-//             alert("Este espacio esta jugado!");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box1.appendChild(equis);
-//             matriz[0][0] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-        
-//     };
-// });
-// box2.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box2.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box2.appendChild(equis);
-//             matriz[0][1] = "x";
-//             trueFalse = false;
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-            
-//         }
-//     }else{
-//         if (box2.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box2.appendChild(equis);
-//             matriz[0][1] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box3.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box3.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box3.appendChild(equis);
-//             matriz[0][2] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box3.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box3.appendChild(equis);
-//             matriz[0][2] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-
-//     //validamos si lo que devuelve es true para saber que alguien ganó
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box4.addEventListener("click", function(){
-
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box4.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box4.appendChild(equis);
-//             matriz[1][0] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box4.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box4.appendChild(equis);
-//             matriz[1][0] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box5.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-
-
-//     if (trueFalse == true) {
-//         if (box5.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box5.appendChild(equis);
-//             matriz[1][1] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box5.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box5.appendChild(equis);
-//             matriz[1][1] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box6.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box6.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box6.appendChild(equis);
-//             matriz[1][2] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box6.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box6.appendChild(equis);
-//             matriz[1][2] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-    
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box7.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box7.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box7.appendChild(equis);
-//             matriz[2][0] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box7.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box7.appendChild(equis);
-//             matriz[2][0] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box8.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box8.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box8.appendChild(equis);
-//             matriz[2][1] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box8.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box8.appendChild(equis);
-//             matriz[2][1] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//          localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
-// box9.addEventListener("click", function(){
-//     let equis = document.createElement("img");
-
-//     if (trueFalse == true) {
-//         if (box9.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "equis";
-//             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-//             box9.appendChild(equis);
-//             matriz[2][2] = "x";
-//             trueFalse = false;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }else{
-//         if (box9.innerHTML != "") {
-//             alert("Este espacio esta jugado");
-            
-//         }else{
-//             equis.className = "circulo";
-//             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-//             box9.appendChild(equis);
-//             matriz[2][2] = "o";
-//             trueFalse = true;
-
-//             equis.offsetHeight;
-//             equis.classList.add('visible');
-//         }
-//     }
-//     if (ganador(matriz) == "x") {
-//         alert("El jugador X for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsX;
-//         localStorage.setItem("XWins",totalWinsX );
-
-//     }else if((ganador(matriz) =="o")){
-//         alert("El jugador O for the win");
-//         capa.style.display = "inline-block";
-//         ++totalWinsO;
-//         localStorage.setItem("OWins",totalWinsO );
-//     };
-// });
-
 
 //------------------------------------------------------------------FUNCION GANADORA-------------------------------------------------------------------
 function ganador(matriz) {
@@ -566,32 +176,6 @@ function ganador(matriz) {
     let contODiagonal1 = 0;
     let contXDiagonal1 = 0;
 
-    //Verifica si el conetendor esta lleno, y declara el empate:
-    let EspacioOcupado = 0;
-
-    for (let i = 0; i < matriz.length; i++) {
-        if (matriz[0][i] != "") {
-            if(matriz[1][i] != ""){
-                if(matriz[2][i]){
-                    ++EspacioOcupado;
-                }else{
-                    break;
-                }
-            }else{
-                break;
-            }
-        }else{
-            break;
-        }
-        
-        if (EspacioOcupado == 3) {
-            alert("EMPATE, vuelva a jugar...");
-            capa.style.display = "inline-block";
-            ++totalEmpate;
-            localStorage.setItem("Empate",totalEmpate );
-            break;
-        }
-    };
 
 
     //Validacion para ganadores:

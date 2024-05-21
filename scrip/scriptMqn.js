@@ -1,14 +1,6 @@
-let btn1 = document.getElementById("Play");
+let btn1 = document.getElementById("repit");
 
-let box1 = document.getElementById("box1");
-let box2 = document.getElementById("box2");
-let box3 = document.getElementById("box3");
-let box4 = document.getElementById("box4");
-let box5 = document.getElementById("box5");
-let box6 = document.getElementById("box6");
-let box7 = document.getElementById("box7");
-let box8 = document.getElementById("box8");
-let box9 = document.getElementById("box9");
+let boxes = document.querySelectorAll(".cajasCont1");
 
 let capa = document.querySelector(".capa");
 
@@ -40,280 +32,59 @@ let matriz = [
     ["","",""]
 ];
 
-box1.addEventListener("click", function(){
+
+function handleClick(evento) {
+    //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
+    //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
+
+    //Extraigo el ID desde el evento del la funcion, para despues agregarlo en el getElementId, para luego tomarlos como referencia al agregarlo al HTML con el appendChild
+    let idString = evento.currentTarget.getAttribute("id");
+    let IdDelDom = document.getElementById(idString);
+
+    let fila = evento.currentTarget.getAttribute("i");
+
+    let columna = evento.currentTarget.getAttribute("j");
+
     let equis = document.createElement("img");
-    if (box1.innerHTML != "") {
+
+    if (IdDelDom.innerHTML != "") {
+
         alert("Este espacio esta jugado");
         
     }else{
+
         equis.className = "equis";
         equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box1.appendChild(equis);
-        matriz[0][0] = "x";
+        IdDelDom.appendChild(equis);
+        matriz[fila][columna] = "x";
         trueFalse = false;
         equis.offsetHeight;
         equis.classList.add('visible');
 
-    }
-    
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-
-
-
-});
-box2.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box2.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box2.appendChild(equis);
-        matriz[0][1] = "x";
-        trueFalse = false;
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box3.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box3.innerHTML != "") {
-        alert("Este espacio esta jugado");
+        if (ganador(matriz) == "x") {
+           
+            alert("El jugador X for the win");
+            capa.style.display = "inline-block";
+        }else if((ganador(matriz) =="o")){
+           
+            alert("El jugador O for the win");
+            capa.style.display = "inline-block";
+        }else{
             
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box3.appendChild(equis);
-        matriz[0][2] = "x";
-        trueFalse = false;
-
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        setTimeout(Maquina, 1000);
-    }
-
-    //validamos si lo que devuelve es true para saber que alguien ganó
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    };
-});
-
-box4.addEventListener("click", function(){
-
-    let equis = document.createElement("img");
-
-    if (box4.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box4.appendChild(equis);
-        matriz[1][0] = "x";
-        trueFalse = false;
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box5.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box5.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box5.appendChild(equis);
-        matriz[1][1] = "x";
-        trueFalse = false;
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box6.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box6.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box6.appendChild(equis);
-        matriz[1][2] = "x";
-        trueFalse = false;
-
-        equis.offsetHeight;
-        equis.classList.add('visible');
-       
-    }
-    
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box7.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box7.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box7.appendChild(equis);
-        matriz[2][0] = "x";
-        trueFalse = false;
-
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box8.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box8.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box8.appendChild(equis);
-        matriz[2][1] = "x";
-        trueFalse = false;
-
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-box9.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (box9.innerHTML != "") {
-        alert("Este espacio esta jugado");
-        
-    }else{
-        equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-        box9.appendChild(equis);
-        matriz[2][2] = "x";
-        trueFalse = false;
-
-        equis.offsetHeight;
-        equis.classList.add('visible');
-        
-    }
-    console.log(matriz)
-
-    if (ganador(matriz) == "x") {
-        alert("El jugador X for the win");
-        capa.style.display = "inline-block";
-    }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-    }else{
-        setTimeout(Maquina, 1000);
-    };
-});
-
-let posicionesCajas = {
-    "c1" : "[0][0]",
-    "c2" : "[0][1]",
-    "c3" : "[0][2]",
-    "c4" : "[1][0]",
-    "c5" : "[1][1]",
-    "c6" : "[1][2]",
-    "c7" : "[2][0]",
-    "c8" : "[2][1]",
-    "c9" : "[2][2]"
+            setTimeout(Maquina, 1000);
+        };
+    }    
 }
+
+//Recorre lo divs ( cajas ) del HTML y escoge clickeado desde la pagina
+
+for (let index = 0; index < boxes.length; index++) {
+
+    console.log(boxes[index]);
+    boxes[index].addEventListener("click", handleClick);
+
+}
+
 
 function Maquina() {
     
@@ -334,7 +105,6 @@ function Maquina() {
     let ColumnaRandom = Math.floor(Math.random()*3);
 
     let CordenadaRandom = "["+FilaRandom+"]["+ColumnaRandom+"]";
-    
 
     if (matriz[FilaRandom][ColumnaRandom] != "") {
 
@@ -344,10 +114,9 @@ function Maquina() {
        
         for (const llave in CordeCajas) {
 
-
             if (CordeCajas[llave] == CordenadaRandom) {
                 
-                //Extrae la lave del objeto "posiciones"
+                //Extrae la llave del objeto "posiciones"
                 let CajaElegida = document.getElementById(llave);
 
                 circulo.className = "circulo";
@@ -358,17 +127,46 @@ function Maquina() {
                 circulo.classList.add('visible');
 
                 if (ganador(matriz) == "x") {
+                    console.log(matriz)
                     alert("El jugador X for the win");
                     capa.style.display = "inline-block";
-                }else if((ganador(matriz) =="o")){
+                }else if((ganador(matriz) == "o")){
+                    console.log(matriz)
                     alert("El jugador O for the win");
                     capa.style.display = "inline-block";
-                };
+                }else{
+
+                    console.log("ahhhhhhhhh")
+                     //Verifica si el conetendor esta lleno, y declara el empate:
+                     let EspacioOcupado = 0;
+
+                     for (let i = 0; i < matriz.length; i++) {
+                         if (matriz[0][i] != "") {
+                             if(matriz[1][i] != ""){
+                                 if(matriz[2][i]){
+                                     ++EspacioOcupado;
+                                 }else{
+                                     break;
+                                 }
+                             }else{
+                                 break;
+                             }
+                         }else{
+                             break;
+                         }
+                         if (EspacioOcupado == 3) {
+                             alert("EMPATE, vuelva a jugar...");
+                             capa.style.display = "inline-block";
+                             break;
+                         };
+                     };
+                }
+
                 break;
-            }
-        }   
-    }
-}
+            };
+        };   
+    };
+};
 
 
 
@@ -397,105 +195,130 @@ function ganador(matriz) {
     let contODiagonal1 = 0;
     let contXDiagonal1 = 0;
 
-    //Verifica si el conetendor esta lleno, y declara el empate:
-    let EspacioOcupado = 0;
+    
+    //----------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FOR------------------------------------------------------------------------------------------
+
 
     for (let i = 0; i < matriz.length; i++) {
-        if (matriz[0][i] != "") {
-            if(matriz[1][i] != ""){
-                if(matriz[2][i]){
-                    ++EspacioOcupado;
-                }else{
-                    break;
-                }
-            }else{
-                break;
-            }
-        }else{
-            break;
-        }
-        if (EspacioOcupado == 3) {
-            alert("EMPATE, vuelva a jugar...");
-            capa.style.display = "inline-block";
-            break;
-        }
-    };
+        for (let j = 0; j < matriz.length; j++) {
+            //  console.log(contOC1);
+            //  console.log("error en este contador"+contXF1);
+            //  console.log(contOF1);
+            //  console.log("error en este contador"+contXC1);
+            //  console.log(contXDiagonal1);
+            //  console.log(contODiagonal1);
+            //  console.log("-------------")
 
+            if (matriz[i][j] == "x") {
 
-    //Validacion para ganadores:
+                console.log(s)
+                console.log(matriz[i][j])
 
-    //---------Valida la fila, columnna 1------------
+                contXF1++;
+            }else if(matriz[i][j] == "o"){
+                contOF1++;
+            };
+    
+            if (matriz[j][i] == "x") {
+                console.log(matriz[i][j])
+                contXC1++;
+                
+            }else if(matriz[j][i] == "o"){
+                contOC1++;
+            };
+        };
 
-    for (let i = 0; i < matriz.length; i++) {
-        
-        if (matriz[0][i] == "x") {
-            contXF1++;
-        }else if(matriz[0][i] == "o"){
-            contOF1++;
-        }
-
-        if (matriz[i][0] == "x") {
-            contXC1++;
-        }else if(matriz[i][0] == "o"){
-            contOC1++;
-        }
-    };
-
-    //----------Valida la fila, columnna 2-------------
-
-    for (let i = 0; i < matriz.length; i++) {
-        //validamos la fila 1 para ver si alguien gano.
-        if (matriz[1][i] == "x") {
-            contXF2++;
-        }else if(matriz[1][i] == "o"){
-            contOF2++;
+        //diagonal 2 verificador
+        if (matriz[2][0] == "x" && matriz[1][1] == "x" && matriz[0][2] == "x") {
+            return "x";
+        }else if(matriz[2][0] == "o" && matriz[1][1] == "o" && matriz[0][2] == "o") {
+            return "o";
         }
 
-        if (matriz[i][1] == "x") {
-            contXC2++;
-        }else if(matriz[i][1] == "o"){
-            contOC2++;
-        }
-    };
 
-    //---------Valida la fila y columnna 3--------------
-    //-----------Valida las 2 diagonales-------------
-
-    for (let i = 0; i < matriz.length; i++) {
-        //validamos la fila 1 para ver si alguien gano.
-        if (matriz[2][i] == "x") {
-            contXF3++;
-        }else if(matriz[2][i] == "o"){
-            contOF3++;
-        }
-
-        if (matriz[i][2] == "x") {
-            contXC3++;
-        }else if(matriz[i][2] == "o"){
-            contOC3++;
-        }
 
         //diagonal 1 verificador
         if (matriz[i][i] == "x") {
             contXDiagonal1++;
+            
         }else if(matriz[i][i] == "o"){
             contODiagonal1++;
         }
+    }
+    //--------------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FO--------------------------------------------------------------------------------------
 
-        //diagonal 2 verificador
+    //Validacion para ganadores:
+    //---------Valida la fila, columnna 1------------
 
-        if (matriz[2][0] == "x" && matriz[1][1] == "x" && matriz[0][2] == "x") {
-            return "x";
-        }else if(matriz[2][0] == "o" && matriz[1][1] == "o" && matriz[0][2] == "o"){
-            return "o";
-        }
-    };
+    // for (let i = 0; i < matriz.length; i++) {
+        
+    //     if (matriz[0][i] == "x") {
+    //         contXF1++;
+    //     }else if(matriz[0][i] == "o"){
+    //         contOF1++;
+    //     }
 
-    
+    //     if (matriz[i][0] == "x") {
+    //         contXC1++;
+    //     }else if(matriz[i][0] == "o"){
+    //         contOC1++;
+    //     }
+    // };
+
+    // //----------Valida la fila, columnna 2-------------
+
+    // for (let i = 0; i < matriz.length; i++) {
+    //     //validamos la fila 1 para ver si alguien gano.
+    //     if (matriz[1][i] == "x") {
+    //         contXF2++;
+    //     }else if(matriz[1][i] == "o"){
+    //         contOF2++;
+    //     }
+
+    //     if (matriz[i][1] == "x") {
+    //         contXC2++;
+    //     }else if(matriz[i][1] == "o"){
+    //         contOC2++;
+    //     }
+    // };
+
+    //---------Valida la fila y columnna 3--------------
+    //-----------Valida las 2 diagonales-------------
+
+    // for (let i = 0; i < matriz.length; i++) {
+    //     //validamos la fila 1 para ver si alguien gano.
+    //     if (matriz[2][i] == "x") {
+    //         contXF3++;
+    //     }else if(matriz[2][i] == "o"){
+    //         contOF3++;
+    //     }
+
+    //     if (matriz[i][2] == "x") {
+    //         contXC3++;
+    //     }else if(matriz[i][2] == "o"){
+    //         contOC3++;
+    //     }
+
+    //     //diagonal 1 verificador
+    //     if (matriz[i][i] == "x") {
+    //         contXDiagonal1++;
+    //     }else if(matriz[i][i] == "o"){
+    //         contODiagonal1++;
+    //     }
+
+        
+    // };
     if (contXF1 == 3 || contXF2 == 3 || contXF3 == 3 || contXC1 == 3 || contXC2 == 3|| contXC3 == 3 || contXDiagonal1 == 3 ) {
         return "x";
     }else if(contOF1 == 3 || contOF2 == 3 || contOF3 == 3 || contOC1 == 3 || contOC2 == 3|| contOC3 == 3 || contODiagonal1 == 3 ){
         //retorna "o" si el "o" gana
         return "o";
     }
+
 };
+
+btn1.addEventListener("click", function(){
+    window.location.reload();
+    
+
+});
