@@ -70,21 +70,19 @@ function handleClick(evento) {
             alert("El jugador O for the win");
             capa.style.display = "inline-block";
         }else{
-            
+            //ESTO SE ENCICLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             setTimeout(Maquina, 1000);
         };
     }    
 }
 
-//Recorre lo divs ( cajas ) del HTML y escoge clickeado desde la pagina
+//Recorre lo divs ( cajas ) del HTML y escoge el clickeado desde la pagina
 
 for (let index = 0; index < boxes.length; index++) {
 
-    console.log(boxes[index]);
     boxes[index].addEventListener("click", handleClick);
 
 }
-
 
 function Maquina() {
     
@@ -106,17 +104,26 @@ function Maquina() {
 
     let CordenadaRandom = "["+FilaRandom+"]["+ColumnaRandom+"]";
 
-    if (matriz[FilaRandom][ColumnaRandom] != "") {
+    console.log(CordenadaRandom)
 
+    if (matriz[FilaRandom][ColumnaRandom] != "") {
+        console.log("cambio")
         Maquina();
         
+        
     }else{
+        console.log(CordenadaRandom)
+
+        //  ESTE CODIGO ES EL QUE ENCICLAAAAAAAAAAAAAAAAAAAAAAAAAA
        
         for (const llave in CordeCajas) {
+            
+            console.log("entra a el for")
 
             if (CordeCajas[llave] == CordenadaRandom) {
+                console.log("entra al if")
                 
-                //Extrae la llave del objeto "posiciones"
+                //Extrae la llave del objeto "CordeCajas"
                 let CajaElegida = document.getElementById(llave);
 
                 circulo.className = "circulo";
@@ -136,14 +143,18 @@ function Maquina() {
                     capa.style.display = "inline-block";
                 }else{
 
+                    //VALIDAR EL EMMPATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
                     console.log("ahhhhhhhhh")
                      //Verifica si el conetendor esta lleno, y declara el empate:
                      let EspacioOcupado = 0;
 
                      for (let i = 0; i < matriz.length; i++) {
+                        console.log("Esta aca")
                          if (matriz[0][i] != "") {
                              if(matriz[1][i] != ""){
                                  if(matriz[2][i]){
+                                    console.log("Espacio ocupado +1")
                                      ++EspacioOcupado;
                                  }else{
                                      break;
@@ -154,21 +165,22 @@ function Maquina() {
                          }else{
                              break;
                          }
+                        
                          if (EspacioOcupado == 3) {
+                            
                              alert("EMPATE, vuelva a jugar...");
                              capa.style.display = "inline-block";
+                             ++totalEmpate;
+                             localStorage.setItem("Empate",totalEmpate );
                              break;
-                         };
+                         }
                      };
                 }
-
                 break;
             };
         };   
     };
 };
-
-
 
 
 //------------------------------------------------------------------FUNCION GANADORA-------------------------------------------------------------------
@@ -195,47 +207,56 @@ function ganador(matriz) {
     let contODiagonal1 = 0;
     let contXDiagonal1 = 0;
 
-    
+    let EspacioOcupado = 0;
+
+    console.log("aca")
+
     //----------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FOR------------------------------------------------------------------------------------------
 
-
     for (let i = 0; i < matriz.length; i++) {
+        
         for (let j = 0; j < matriz.length; j++) {
-            //  console.log(contOC1);
-            //  console.log("error en este contador"+contXF1);
-            //  console.log(contOF1);
-            //  console.log("error en este contador"+contXC1);
-            //  console.log(contXDiagonal1);
-            //  console.log(contODiagonal1);
-            //  console.log("-------------")
 
             if (matriz[i][j] == "x") {
+                if (i == 0) {
+                    contXF1++;
+                }else if (i == 1) {
+                    contXF2++;
+                }else if (i == 2) {
+                    contXF3++;
+                }
+            }    
 
-                console.log(s)
-                console.log(matriz[i][j])
+            if (matriz[i][j] == "o"){
+                if (i == 0) {
+                    contOF1++;
+                }else if (i == 1) {
+                    contOF2++;
+                }else if (i == 2) {
+                    contOF3++;
+                }
+            }
 
-                contXF1++;
-            }else if(matriz[i][j] == "o"){
-                contOF1++;
-            };
-    
-            if (matriz[j][i] == "x") {
-                console.log(matriz[i][j])
-                contXC1++;
-                
-            }else if(matriz[j][i] == "o"){
-                contOC1++;
+            if (matriz[j][i] == "x"){
+                if (i == 0) {
+                    contXC1++;
+                }else if (i == 1) {
+                    contXC2++;
+                }else if (i == 2) {
+                    contXC3++;
+                }
+            }
+
+            if(matriz[j][i] == "o"){
+                if (i == 0) {
+                    contOC1++;
+                }else if (i == 1) {
+                    contOC2++;
+                }else if (i == 2) {
+                    contOC3++;
+                }
             };
         };
-
-        //diagonal 2 verificador
-        if (matriz[2][0] == "x" && matriz[1][1] == "x" && matriz[0][2] == "x") {
-            return "x";
-        }else if(matriz[2][0] == "o" && matriz[1][1] == "o" && matriz[0][2] == "o") {
-            return "o";
-        }
-
-
 
         //diagonal 1 verificador
         if (matriz[i][i] == "x") {
@@ -243,8 +264,20 @@ function ganador(matriz) {
             
         }else if(matriz[i][i] == "o"){
             contODiagonal1++;
+        };
+        if (i == 2) {
+            console.log("nn")
+            break;
+            
         }
-    }
+    };
+    console.log("el for esta joya");
+    //diagonal 2 verificador
+    if (matriz[2][0] == "x" && matriz[1][1] == "x" && matriz[0][2] == "x") {
+        return "x";
+    }else if(matriz[2][0] == "o" && matriz[1][1] == "o" && matriz[0][2] == "o") {
+        return "o";
+    };
     //--------------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FO--------------------------------------------------------------------------------------
 
     //Validacion para ganadores:
@@ -314,7 +347,6 @@ function ganador(matriz) {
         //retorna "o" si el "o" gana
         return "o";
     }
-
 };
 
 btn1.addEventListener("click", function(){

@@ -10,50 +10,27 @@ function handleClick(evento) {
     //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
     //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
 
-<<<<<<< HEAD
     //Extraigo el ID desde el evento del la funcion, para despues agregarlo en el getElementId, para luego tomarlos como referencia al agregarlo al HTML con el appendChild
     let idString = evento.currentTarget.getAttribute("id");
 
     let IdDelDom = document.getElementById(idString);
-=======
-    //
-    let cajaTarget= evento.currentTarget.getAttribute("id");
-
-    let cajaGetElemento = document.getElementById(cajaTarget);
-
-    console.log(evento.currentTarget.getAttribute("i"));
-    console.log(evento.currentTarget.getAttribute("j"));
->>>>>>> 1f8b1dacea1d665f6cf9f3a39795bc1ca94ad36a
 
     let fila = evento.currentTarget.getAttribute("i");
 
     let columna = evento.currentTarget.getAttribute("j");
 
     let equis = document.createElement("img");
-<<<<<<< HEAD
 
     if (trueFalse == true) {
 
         //corregi el box1 por la caja que tengas:----------------------------------------------------
         if (IdDelDom.innerHTML != "") {
-=======
-    
-    
-    if (trueFalse == true) {
-
-        //corregi el box1 por la caja que tengas:----------------------------------------------------
-        if (cajaGetElemento.innerHTML != "") {
->>>>>>> 1f8b1dacea1d665f6cf9f3a39795bc1ca94ad36a
             alert("Este espacio esta jugado");
             
         }else{
             equis.className = "equis";
             equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-<<<<<<< HEAD
             IdDelDom.appendChild(equis);
-=======
-            cajaGetElemento.appendChild(equis);
->>>>>>> 1f8b1dacea1d665f6cf9f3a39795bc1ca94ad36a
             matriz[fila][columna] = "x";
             trueFalse = false;
 
@@ -61,21 +38,13 @@ function handleClick(evento) {
             equis.classList.add('visible');
         }
     }else{
-<<<<<<< HEAD
         if (IdDelDom.innerHTML != "") {
-=======
-        if (cajaGetElemento.innerHTML != "") {
->>>>>>> 1f8b1dacea1d665f6cf9f3a39795bc1ca94ad36a
             alert("Este espacio esta jugado!");
             
         }else{
             equis.className = "circulo";
             equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-<<<<<<< HEAD
             IdDelDom.appendChild(equis);
-=======
-            cajaGetElemento.appendChild(equis);
->>>>>>> 1f8b1dacea1d665f6cf9f3a39795bc1ca94ad36a
             matriz[fila][columna] = "o";
             trueFalse = true;
 
@@ -99,8 +68,9 @@ function handleClick(evento) {
         
     }else{
 
-    //Verifica si el conetendor esta lleno, y declara el empate:
+     //Verifica si el conetendor esta lleno, y declara el empate:
      let EspacioOcupado = 0;
+
 
      for (let i = 0; i < matriz.length; i++) {
          if (matriz[0][i] != "") {
