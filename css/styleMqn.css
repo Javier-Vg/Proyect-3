@@ -106,7 +106,10 @@ h2{
     text-align: center;
     
 }
-
+@font-face{
+    font-family: "fuenteNew";
+    src: url("/Proyect-3/Deadknight.otf");
+}
 
 .equisNav{
     width: 50px;
