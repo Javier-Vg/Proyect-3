@@ -42,46 +42,9 @@ body{
     margin-top: 200px;
 } 
 
-/* .cajasCont1:first-child{
-    border-top: none;
-    
-    border-left: none;
-}
-.cajasCont1:nth-child(3){
-    border-top: none;
-    border-right: none;
-    
-}
-.cajasCont1:nth-child(2){
-    border-top: none;
-    
-}
-.cajasCont1:nth-child(4){
-    border-left: none;
-   
-}
-.cajasCont1:nth-child(6){
-    border-right: none;
-}
-.cajasCont1:nth-child(7){
-    border-left: none;
-    border-bottom: none;
-    
-}
-.cajasCont1:nth-child(8){
-    border-bottom: none;
-}
-
-.cajasCont1:nth-child(9){
-    
-    border-bottom: none;
-    border-right: none;
-} */
 
 .divCore{
     padding: 20px;
-    border: 5px solid white;
-    border-radius: 10px;
     margin-left: 520px;
     width: 800px;
     margin: auto;

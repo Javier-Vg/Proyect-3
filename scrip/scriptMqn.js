@@ -4,6 +4,31 @@ let boxes = document.querySelectorAll(".cajasCont1");
 
 let capa = document.querySelector(".capa");
 
+//Contenedores a donde van los contadores de las win y empate:
+let conteinerWinx = document.querySelector(".numeroWxMqn");
+let conteinerWino = document.querySelector(".numeroWoMqn");
+let conteinerEmpate = document.querySelector(".numeroEmpatesMqn");
+
+if (localStorage.getItem('XWinsMqn') == null) {
+
+    localStorage.setItem('XWinsMqn', 0);
+    localStorage.setItem('OWinsMqn', 0);
+    localStorage.setItem('EmpateMqn', 0); 
+    
+}
+
+//Extraigo los numeros del locageStorage:
+let x = localStorage.getItem('XWinsMqn');
+let o = localStorage.getItem('OWinsMqn');
+let e = localStorage.getItem('EmpateMqn');
+
+console.log(x)
+
+//Agrego el numero en el div correspondiente de cada contador.
+conteinerWinx.innerHTML = x;
+conteinerWino.innerHTML = o;
+conteinerEmpate.innerHTML = e;
+
 let sonido1 = new Audio();
 let sonido2 = new Audio();
 let sonido3 = new Audio();
@@ -282,8 +307,14 @@ function ganador(matriz) {
     //--------------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FO--------------------------------------------------------------------------------------
 
     if (contXF1 == 3 || contXF2 == 3 || contXF3 == 3 || contXC1 == 3 || contXC2 == 3|| contXC3 == 3 || contXDiagonal1 == 3 || contXDiagonal2 == 3) {
+
+        localStorage.setItem("XWinsMqn",((parseInt(x) + 1)));
+        conteinerWinx.innerHTML = x;
         return "x";
     }else if(contOF1 == 3 || contOF2 == 3 || contOF3 == 3 || contOC1 == 3 || contOC2 == 3|| contOC3 == 3 || contODiagonal1 == 3 || contODiagonal2 == 3 ){
+
+        localStorage.setItem("OWinsMqn",((parseInt(o) + 1)));
+        conteinerWino.innerHTML = o;
         //retorna "o" si el "o" gana
         return "o";
     }

@@ -6,22 +6,30 @@ let boxes = document.querySelectorAll(".cajasCont1");
 
 let trueFalse = true;
 
-let totalEmpate = 0;
-let totalWinsX = 0;
-let totalWinsO = 0;
-
+//Contenedores a donde van los contadores de las win y empate:
 let conteinerWinx = document.querySelector(".numeroWx");
 let conteinerWino = document.querySelector(".numeroWo");
 let conteinerEmpate = document.querySelector(".numeroEmpates");
 
-//Esto hace que siempre se añade el contador de wins y empates:
+if (localStorage.getItem('XWins') == null) {
+    localStorage.setItem('XWins', 0);
+    localStorage.setItem('OWins', 0);
+    localStorage.setItem('Empate', 0); 
+}
+
+//Extraigo los numeros del locageStorage:
 let x = localStorage.getItem('XWins');
 let o = localStorage.getItem('OWins');
 let e = localStorage.getItem('Empate');
 
+console.log(x)
+
+//Agrego el numero en el div correspondiente de cada contador.
 conteinerWinx.innerHTML = x;
 conteinerWino.innerHTML = o;
 conteinerEmpate.innerHTML = e;
+
+
 
 function handleClick(evento) {
 
@@ -41,7 +49,6 @@ function handleClick(evento) {
 
     if (trueFalse == true) {
 
-        //corregi el box1 por la caja que tengas:----------------------------------------------------
         if (IdDelDom.innerHTML != "") {
 
             alert("Este espacio esta jugado");
@@ -58,6 +65,7 @@ function handleClick(evento) {
         }
 
     }else{
+
         if (IdDelDom.innerHTML != "") {
             alert("Este espacio esta jugado!");
             
@@ -77,17 +85,12 @@ function handleClick(evento) {
 
         alert("El jugador X for the win");
         capa.style.display = "inline-block";
-        ++totalWinsX;
-        localStorage.setItem("XWins",totalWinsX );
-        conteinerWinx.innerHTML = totalWinsX;
-    
+
 
     }else if((ganador(matriz) =="o")){
         alert("El jugador O for the win");
         capa.style.display = "inline-block";
-        ++totalWinsO;
-        localStorage.setItem("OWins",totalWinsO );
-        conteinerWino.innerHTML = totalWinsO
+
         
     }else{
 
@@ -113,9 +116,8 @@ function handleClick(evento) {
             
                 alert("EMPATE, vuelva a jugar...");
                 capa.style.display = "inline-block";
-                ++totalEmpate;
-                localStorage.setItem("Empate",totalEmpate );
-                conteinerEmpate.innerHTML = totalEmpate;
+                localStorage.setItem("Empate",((parseInt(e) + 1)));
+                conteinerEmpate.innerHTML = e;
                 break;
 
             };
@@ -257,19 +259,23 @@ function ganador(matriz) {
         --decrementacion;
     };
     
-    
     if (contXF1 == 3 || contXF2 == 3 || contXF3 == 3 || contXC1 == 3 || contXC2 == 3|| contXC3 == 3 || contXDiagonal1 == 3 || contXDiagonal2 == 3) {
+        
+        localStorage.setItem("XWins",((parseInt(x) + 1)));
+        conteinerWinx.innerHTML = x;
+        //retorna "x" si el "x" gana, dependiendo de los contadores
         return "x";
     }else if(contOF1 == 3 || contOF2 == 3 || contOF3 == 3 || contOC1 == 3 || contOC2 == 3|| contOC3 == 3 || contODiagonal1 == 3 || contODiagonal2 == 3){
-        //retorna "o" si el "o" gana
+
+        localStorage.setItem("OWins",((parseInt(o) + 1)));
+        conteinerWino.innerHTML = o;
+        //retorna "o" si el "o" gana, dependiendo de los contadores.
         return "o";
     }
 };
 
-
 btn1.addEventListener("click", function(){
     
     window.location.reload();
-    
 
 });
