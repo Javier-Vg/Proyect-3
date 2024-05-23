@@ -245,18 +245,18 @@ function ganador(matriz) {
 
     //DIAGONAL 2--------------------for decrementa y el otro aumenta, segun el rango de la matriz---------------------------------------------------------------
     //El error es que al iterar en la segunda columna, la fila se queda en 2 "matriz[2][1]" en la segunda vuelva del for interior
-    for (let i = 2; i >= 0; i--) {
-        for (let j = 0; j < matriz.length; j++) {
-            if (matriz[i][j] == "x") {
-                console.log(matriz[i][j])
-                contXDiagonal2++;
-            }else if(matriz[i][j] == "o" ) {
-                console.log(matriz[i][j])
-                contODiagonal2++;
-            };
+    let decrementacion = 2;
+    for (let j = 0; j < matriz.length; j++) {
+        if (matriz[decrementacion][j] == "x") {
+            
+            contXDiagonal2++;
+        }else if(matriz[decrementacion][j] == "o" ) {
+            
+            contODiagonal2++;
         };
+        --decrementacion;
     };
-    console.log("Vuelve a iterar")
+    
     
     if (contXF1 == 3 || contXF2 == 3 || contXF3 == 3 || contXC1 == 3 || contXC2 == 3|| contXC3 == 3 || contXDiagonal1 == 3 || contXDiagonal2 == 3) {
         return "x";

@@ -3,49 +3,29 @@ body{
     background-color:#000;
 }
 
-.imgTicTac{
-    
-    width: 150px;
-    height: 150px;
-    position: relative;
-    margin-left: 1170px;
-    margin-top: 60px;
-
-}
-
 
 .gatoRaton{
-    width: 300px; 
-    height: 300px;
+    width: 105px; 
+    height: 90px;
     background-color: aliceblue; 
-    border-radius: 50px;
-    position: absolute;
-    margin-left: 1060px;
-    margin-top: 0;
-    border: 20px solid gray;
-}
-
-.cont1{
-    display: flex;
-    margin-top: 300px;
-    justify-content: center;
-    justify-content: space-around;
-}
-
-.TTT{
-    width: 500px;
-    height: 500px;
+    position: relative;
+    margin-left: 1467px;
+    border: 10px solid gray;
+    margin-top: 74px;
+    
 }
 
 h1{
     text-align: center;
     color: white;
-    font-size: 120px;
+    font-size: 150px;
     font-family: fuenteNew;
-    letter-spacing: 5px;
-    padding: 0;
-    margin-top: 0;
+    position: absolute;
+    letter-spacing: 8px;
+    margin-top: 40px;
     margin-bottom: 5px;
+    margin-left: 540px;
+    
 }
 
 .single{
@@ -54,21 +34,55 @@ h1{
     fill: aliceblue;
 }
 
-article{
-    position: relative;
-    width: 250;
-    transition: all .3s ease;
-}
-
-article img:first-child{
-    box-shadow: 0 60px 60px -60px rgb(0, 30, 255, 0,5);
-    border-radius: 4px;
-    object-fit: cover;
-    width: 100%;
-    
-}
 
 @font-face{
     font-family: "fuenteNew";
     src: url("/Proyect-3/Deadknight.otf");
 }
+
+.cont1{
+    display: grid;
+    grid-template-columns: repeat(2,460px);
+    grid-template-rows: repeat(2,150px);;
+    text-align: center;
+    gap: 35px;
+    margin-left: 700px;
+    margin-top: 300px;
+
+}
+.box{
+    border: 10px solid white;
+    border-radius: 15px;
+    padding: 20px;
+    color: aliceblue;
+    font-size: 45px;
+    background-color: #000;
+    transition: all .5s ease;
+    
+    
+}
+
+.box:hover {
+    margin: 10px;
+}
+
+.iconos{
+    fill: aliceblue;
+    width: 60px;
+    height: 60px;
+}
+
+
+
+
+.video{
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute ;
+}
+
+

@@ -268,14 +268,16 @@ function ganador(matriz) {
     };
 
     //DIAGONAL 2--------------------for decrementa y el otro aumenta, segun el rango de la matriz---------------------------------------------------------------
-    for (let i = 2; i >= 0; i--) {
-        for (let j = 0; j < matriz.length; j++) {
-            if (matriz[i][j] == "x") {
-                contXDiagonal2++;
-            }else if(matriz[i][j] == "o" ) {
-                contODiagonal2++;
-            };
+    let decrementacion = 2;
+    for (let j = 0; j < matriz.length; j++) {
+        if (matriz[decrementacion][j] == "x") {
+            
+            contXDiagonal2++;
+        }else if(matriz[decrementacion][j] == "o" ) {
+            
+            contODiagonal2++;
         };
+        --decrementacion;
     };
     //--------------------------------------------------------------------------------------------VALIDAR GANADOR CON 2 FO--------------------------------------------------------------------------------------
 
