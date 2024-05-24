@@ -1,437 +1,304 @@
 console.log("jaja");
 
-let btn1 = document.getElementById("Play");
+let btn1 = document.getElementById("repit");
 
-let box1 = document.getElementById("box1");
-let box2 = document.getElementById("box2");
-let box3 = document.getElementById("box3");
-let box4 = document.getElementById("box4");
-let box5 = document.getElementById("box5");
-let box6 = document.getElementById("box6");
-let box7 = document.getElementById("box7");
-let box8 = document.getElementById("box8");
-let box9 = document.getElementById("box9");
+let boxes = document.querySelectorAll(".cajasCont1");
 
 let trueFalse = true;
 
-let matriz = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8]
-];
+let equis = document.createElement("img");
 
-box1.addEventListener("click", function(){
+let turno = document.getElementById("turno");
+
+//Contenedores a donde van los contadores de las win y empate:
+let conteinerWinx = document.querySelector(".numeroWx");
+let conteinerWino = document.querySelector(".numeroWo");
+let conteinerEmpate = document.querySelector(".numeroEmpates");
+
+if (localStorage.getItem('XWins') == null) {
+    localStorage.setItem('XWins', 0);
+    localStorage.setItem('OWins', 0);
+    localStorage.setItem('Empate', 0); 
+}
+
+//Extraigo los numeros del locageStorage:
+let x = localStorage.getItem('XWins');
+let o = localStorage.getItem('OWins');
+let e = localStorage.getItem('Empate');
+
+//Agrego el numero en el div correspondiente de cada contador.
+conteinerWinx.innerHTML = x;
+conteinerWino.innerHTML = o;
+conteinerEmpate.innerHTML = e;
+
+function handleClick(evento) {
+
+    //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
+    //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
+    
+    //Extraigo el ID desde el evento del la funcion, para despues agregarlo en el getElementId, para luego tomarlos como referencia al agregarlo al HTML con el appendChild
+    let idString = evento.currentTarget.getAttribute("id");
+
+    let IdDelDom = document.getElementById(idString);
+
+    let fila = evento.currentTarget.getAttribute("i");
+
+    let columna = evento.currentTarget.getAttribute("j");
+
     let equis = document.createElement("img");
+
     if (trueFalse == true) {
-        if (box1.innerHTML != "") {
+
+        if (IdDelDom.innerHTML != "") {
+
             alert("Este espacio esta jugado");
             
         }else{
             equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box1.appendChild(equis);
-            matriz[0][0] = "x";
+            equis.src = "/Proyect-3/img/equiisCeleste.svg";
+            IdDelDom.appendChild(equis);
+            matriz[fila][columna] = "x";
             trueFalse = false;
+
+            equis.offsetHeight;
+            equis.classList.add('visible');
         }
+
     }else{
-        if (box1.innerHTML != "") {
+
+        if (IdDelDom.innerHTML != "") {
             alert("Este espacio esta jugado!");
             
         }else{
             equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box1.appendChild(equis);
-            matriz[0][0] = "o";
+            equis.src = "/Proyect-3/img/crculoAmmarillo-removebg-preview.png";
+            IdDelDom.appendChild(equis);
+            matriz[fila][columna] = "o";
             trueFalse = true;
+
+            equis.offsetHeight;
+            equis.classList.add('visible');
         }
     }
 
-    if (ganador(matriz)) {
-        alert("Has ganado la partida")
-    }
-});
-box2.addEventListener("click", function(){
-    let equis = document.createElement("img");
+    //Verifica que el return de la funcion "ganador" sea igual a "o" o tambien "x", y da el gane al jugador por un mensaje alert.
+    //Añade una capa inviible para que no pueda seguir interactuando con el juego, hace que se termine el juego.
+    if (ganador(matriz) == "x") {
 
-    if (trueFalse == true) {
-        if (box2.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box2.appendChild(equis);
-            matriz[0][1] = "x";
-            trueFalse = false;
-        }
+        alert("El jugador X a Ganado!");
+        capa.style.display = "inline-block";
+        turno.textContent = "X WIN" ;
+
+    }else if((ganador(matriz) =="o")){
+        alert("El jugador O a Ganado!");
+        capa.style.display = "inline-block";   
+        turno.textContent = "O WIN"; 
+        
     }else{
-        if (box1.innerHTML != "") {
-            alert("Este espacio esta jugado");
+
+        //Verifica si el conetendor esta lleno, y declara el empate:
+        //Se tiene ue cumplir todo de una sola vez para que ocurra el empate.
+        let EspacioOcupado = 0;
+        for (let i = 0; i < matriz.length; i++) {
+            if (matriz[0][i] != "") {
+                if(matriz[1][i] != ""){
+                    if(matriz[2][i]){
+                        ++EspacioOcupado;
+                    }else{
+                        break;
+                    }
+                }else{
+                    break;
+                }
+            }else{
+                break;
+            };
+
+            if (EspacioOcupado == 3) {
             
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box2.appendChild(equis);
-            matriz[0][1] = "o";
-            trueFalse = true;
-        }
-    }
-    if (ganador(matriz)) {
-        alert("Has ganado la partida")
-    }
-});
+                alert("EMPATE, vuelva a jugar...");
+                capa.style.display = "inline-block";
+                //Se suman lo que ya tenia en el localStorage con 1.
+                localStorage.setItem("Empate",((parseInt(e) + 1)));
+                conteinerEmpate.innerHTML = e;
+                break;
 
-box3.addEventListener("click", function(){
-    let equis = document.createElement("img");
+            };
+        };
+    };
 
+    //Alterno el turno siguiente:
     if (trueFalse == true) {
-        if (box3.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box3.appendChild(equis);
-            matriz[0][2] = "x";
-            trueFalse = false;
-        }
+        turno.textContent = "X TURN";
     }else{
-        if (box3.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box3.appendChild(equis);
-            matriz[0][2] = "o";
-            trueFalse = true;
-        }
+        turno.innerHTML = "O TURN";
     }
 
-    //validamos si lo que devuelve es true para saber que alguien ganó
-    if (ganador(matriz)) {
-
-        alert("Has ganado la partida");
+    //Verifica si
+    if (ganador(matriz) == "x") {
+        turno.innerHTML = "X WIN ";
+    }else if((ganador(matriz) == "o")){
+        turno.innerHTML = "O WIN";
     }
-});
+};
 
-box4.addEventListener("click", function(){
+//-----------------------------------------------------------------------------------------------------
+//Recorre todas las cajas y escoje la que fue clickeada desde la pagina.
+for (let index = 0; index < boxes.length; index++) {
 
-    let equis = document.createElement("img");
+    boxes[index].addEventListener("click", handleClick);
 
-    if (trueFalse == true) {
-        if (box4.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box4.appendChild(equis);
-            matriz[1][0] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box4.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box4.appendChild(equis);
-            matriz[1][0] = "o";
-            trueFalse = true;
-        }
-    }
-});
+};
 
-box5.addEventListener("click", function(){
-    let equis = document.createElement("img");
+//------------------------------------------------------------------------------------------------------
+let capa = document.querySelector(".capa");
 
-    if (trueFalse == true) {
-        if (box5.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box5.appendChild(equis);
-            matriz[1][1] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box5.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box5.appendChild(equis);
-            matriz[1][1] = "o";
-            trueFalse = true;
-        }
-    }
-});
+//Extraer sonidos con el metodo Audio para cuando se haga click en los espacios.
+let sonido1 = new Audio();
+let sonido2 = new Audio();
+let sonido3 = new Audio();
+let sonido4 = new Audio();
+let sonido5 = new Audio();
+let sonido6 = new Audio();
+let sonido7 = new Audio();
+let sonido8 = new Audio();
+let sonido9 = new Audio();
 
-box6.addEventListener("click", function(){
-    let equis = document.createElement("img");
+sonido1.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido2.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido3.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido4.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido5.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido6.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido7.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido8.src = "/Proyect-3/sonidos/interface-124464.mp3";
+sonido9.src = "/Proyect-3/sonidos/interface-124464.mp3";
 
-    if (trueFalse == true) {
-        if (box6.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box6.appendChild(equis);
-            matriz[1][2] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box1.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box6.appendChild(equis);
-            matriz[1][2] = "o";
-            trueFalse = true;
-        }
-    }
-});
-
-box7.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (trueFalse == true) {
-        if (box7.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box7.appendChild(equis);
-            matriz[2][0] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box7.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box7.appendChild(equis);
-            matriz[2][0] = "o";
-            trueFalse = true;
-        }
-    }
-});
-
-box8.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (trueFalse == true) {
-        if (box8.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box8.appendChild(equis);
-            matriz[2][1] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box8.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box8.appendChild(equis);
-            matriz[2][1] = "o";
-            trueFalse = true;
-        }
-    }
-});
-
-box9.addEventListener("click", function(){
-    let equis = document.createElement("img");
-
-    if (trueFalse == true) {
-        if (box9.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
-            box9.appendChild(equis);
-            matriz[2][2] = "x";
-            trueFalse = false;
-        }
-    }else{
-        if (box9.innerHTML != "") {
-            alert("Este espacio esta jugado");
-            
-        }else{
-            equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
-            box9.appendChild(equis);
-            matriz[2][2] = "o";
-            trueFalse = true;
-        }
-    }
-});
-
-console.log(matriz);
+//Matriz se inicializa en nulo, para que cuando se añaden los "x" y "o" pueda validar los ganes.
+let matriz = [
+    ["","",""],
+    ["","",""],
+    ["","",""]
+];
 
 //------------------------------------------------------------------FUNCION GANADORA-------------------------------------------------------------------
 function ganador(matriz) {
 
-    //creamos 2 variables que validen si hay 3 x en la posicion, o 3 circulos en la posicion.
-    //se creamos 2 contadores para cada simbolo que nos dice si el contador es 3 es por que ya, alguien ganó.
+    //contadores de X de las 3 filas
+    let contXF1 = 0;
+    let contXF2 = 0;
+    let contXF3 = 0;
+    //contadores de X de las 3 columnas
+    let contXC1 = 0;
+    let contXC2 = 0;
+    let contXC3 = 0;
+    //contadores de O en las 3 filas
+    let contOF1 = 0;
+    let contOF2 = 0;
+    let contOF3 = 0;
+    //contadores de O en las3 columnas
+    let contOC1 = 0;
+    let contOC2 = 0;
+    let contOC3 = 0;
 
-    let contX = 0;
-    let contO = 0;
+    //Contador de 0 y X en la diagonal superior izquierda y inferior derecha.
+    let contODiagonal1 = 0;
+    let contXDiagonal1 = 0;
+
+    //Contador de 0 y X en la diagonal superior derecha y inferior izquierda.
+    let contODiagonal2 = 0;
+    let contXDiagonal2 = 0;
 
     //Validacion para ganadores:
-
-    //tenemos un for que nos ayudará a recorrer cada espacio de la fila 1.
-    for (let i = 0; i < matriz.length; i++) {
-        //validamos la fila 1 para ver si alguien gano.
-        if (matriz[0][i] == "x") {
-            contX++;
-        //validamos la fila 1 para ver si alguien gano
-        }else if(matriz[0][i] == "o"){
-            contO++;
-        }
-    };
+    //Recorre las filas y columnas de la matriz y van sumando los contadores.
 
     for (let i = 0; i < matriz.length; i++) {
-        //validamos la fila 1 para ver si alguien gano.
-        if (matriz[0][i] == "x") {
-            contX++;
-        //validamos la fila 1 para ver si alguien gano
-        }else if(matriz[0][i] == "o"){
-            contO++;
-        }
+        
+        for (let j = 0; j < matriz.length; j++) {
+
+            if (matriz[i][j] == "x") {
+                if (i == 0) {
+                    contXF1++;
+                }else if (i == 1) {
+                    contXF2++;
+                }else if (i == 2) {
+                    contXF3++;
+                };
+            };
+
+            if (matriz[i][j] == "o"){
+                if (i == 0) {
+                    contOF1++;
+                }else if (i == 1) {
+                    contOF2++;
+                }else if (i == 2) {
+                    contOF3++;
+                }
+            };
+
+            if (matriz[j][i] == "x"){
+                if (i == 0) {
+                    contXC1++;
+                }else if (i == 1) {
+                    contXC2++;
+                }else if (i == 2) {
+                    contXC3++;
+                }
+            };
+
+            if(matriz[j][i] == "o"){
+                if (i == 0) {
+                    contOC1++;
+                }else if (i == 1) {
+                    contOC2++;
+                }else if (i == 2) {
+                    contOC3++;
+                };
+            };
+        };
+
+        //diagonal 1 verificador
+        if (matriz[i][i] == "x") {
+            contXDiagonal1++;
+            
+        }else if(matriz[i][i] == "o"){
+            contODiagonal1++;
+        };
     };
 
-    //se valida si el contador tiene un 3 que esto nos indica que ya ganó
-    if (contX == 3 || contO == 3) {
-        return true;
-    }else{
-        //retorna false si no hay ganador.
-        return false;
+
+    //DIAGONAL 2--------------------for decrementa y el otro aumenta, segun el rango de la matriz---------------------------------------------------------------
+    //El error es que al iterar en la segunda columna, la fila se queda en 2 "matriz[2][1]" en la segunda vuelva del for interior
+    let decrementacion = 2;
+    for (let j = 0; j < matriz.length; j++) {
+        if (matriz[decrementacion][j] == "x") {
+            
+            contXDiagonal2++;
+        }else if(matriz[decrementacion][j] == "o" ) {
+            
+            contODiagonal2++;
+        };
+        --decrementacion;
+    };
+    
+    if (contXF1 == 3 || contXF2 == 3 || contXF3 == 3 || contXC1 == 3 || contXC2 == 3|| contXC3 == 3 || contXDiagonal1 == 3 || contXDiagonal2 == 3) {
+        
+        localStorage.setItem("XWins",((parseInt(x) + 1)));
+        conteinerWinx.innerHTML = x;
+        //retorna "x" si el "x" gana, dependiendo de los contadores
+        return "x";
+    }else if(contOF1 == 3 || contOF2 == 3 || contOF3 == 3 || contOC1 == 3 || contOC2 == 3|| contOC3 == 3 || contODiagonal1 == 3 || contODiagonal2 == 3){
+
+        localStorage.setItem("OWins",((parseInt(o) + 1)));
+        conteinerWino.innerHTML = o;
+        //retorna "o" si el "o" gana, dependiendo de los contadores.
+        return "o";
     }
 };
 
-
-    // if (i = 0) {
-
-    //     if (matriz[0][0] == "x" && matriz[0][1] == "x" && matriz[0][2] == "x") {
-    //         alert("El jugador 'X' gano!");
-    //         break;
-
-    //     }else if(matriz[0][0] == "x" && matriz[1][1] == "x" && matriz[2][2] == "x"){
-    //         alert("El jugador 'X' gano!");
-    //         break;
-        
-    //     }else if(matriz[0][0] == "x" && matriz[1][0] == "x" && matriz[2][0] == "x"){
-    //         alert("El jugador 'X' gano!");
-    //         break;
-
-    //     }else if(matriz[0][0] == "o" && matriz[1][0] == "o" && matriz[2][0] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-
-    //     }else if(matriz[0][0] == "o" && matriz[1][0] == "o" && matriz[2][0] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-
-    //     }else if(matriz[0][0] == "o" && matriz[1][0] == "o" && matriz[2][0] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-    //     }
-
-    // }else if (i = 1) {
-
-    //     if (matriz[0][1] == "x" && matriz[0][2] == "x" && matriz[0][0] == "x") {
-    //         alert("El jugador 'X' gano!");
-    //         break;
-
-    //     }else if(matriz[0][1] == "x" && matriz[1][1] == "x" && matriz[2][1] == "x"){
-    //         alert("El jugador 'X' gano!");
-    //         break;
-        
-    //     }else if(matriz[0][1] == "o" && matriz[0][2] == "o" && matriz[0][0] == "o"){
-    //         alert("El jugador 'O' gano!");
-    //         break;
-
-    //     }else if(matriz[0][1] == "o" && matriz[1][1] == "o" && matriz[2][1] == "o"){
-    //         alert("El jugador 'O' gano!");
-    //         break;
-
-    //     }
-
-    // }else if (i = 2) {
-
-    //     if (matriz[0][2] == "x" && matriz[0][1] == "x" && matriz[0][0] == "x") {
-    //         alert("El jugador 'X' gano!");
-    //         break;
-
-    //     }else if(matriz[0][2] == "x" && matriz[1][1] == "x" && matriz[2][0] == "x"){
-    //         alert("El jugador 'X' gano!");
-    //         break;
-        
-    //     }else if(matriz[0][2] == "x" && matriz[1][2] == "x" && matriz[2][2] == "x"){
-    //         alert("El jugador 'X' gano!");
-    //         break;
-
-    //     }else if(matriz[0][2] == "o" && matriz[0][1] == "o" && matriz[0][0] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-
-    //     }else if(matriz[0][2] == "o" && matriz[1][1] == "o" && matriz[2][0] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-
-    //     }else if(matriz[0][2] == "o" && matriz[1][2] == "o" && matriz[2][2] == "o"){
-    //         alert("El jugador 'o' gano!");
-    //         break;
-    //     }
-        
-    // }else if (i = 3) {
-        
-    // }else if (i = 4) {
-        
-    // }else if (i = 5) {
-        
-    // }else if (i = 6) {
-        
-    // }else if (i = 7) {
-        
-    // }else if (i = 8) {
-        
-    // }
-
-
-    //****************************************************************** */
-    // }else if(matriz[0][i]== "o" && matriz[0][i+1] == "o" && matriz[0][i+2] == "o" ){
-    //     alert("El jugador 'O' Gano!");
-
-    // }
-
-
-
-
-
-// if (matriz[0][0] == "x" && matriz[0][1] == "x" && matriz[0][2] == "x" ) {
-//     alert("Usted a ganado :");
-// };
-
+//Recarga la pagina.
 btn1.addEventListener("click", function(){
     
+    window.location.reload();
 
 });

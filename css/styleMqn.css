@@ -1,0 +1,116 @@
+body{
+    background-color: #000c;
+}
+
+.cont1{
+
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    justify-content: center;
+    padding: 45px;
+    border-radius: 15px;
+    width: 600px;
+    position: relative;
+    z-index: 1;
+    margin: auto;
+    gap: 20px;
+
+}
+
+.cont2{
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+}
+
+.cont3{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.capa{
+    z-index: 2;
+    position: absolute;
+    background-color: transparent;
+    height: 690px;
+    width: 690px;
+    margin-left: 930px;
+    border-radius: 10px;
+    margin-top: 200px;
+} 
+
+.divCore{
+    padding: 20px;
+    margin-left: 520px;
+    width: 800px;
+    margin: auto;
+
+}
+
+.repit{
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.cajasCont1{
+    border: solid;
+    box-shadow: 0px 10px;
+    background-color: #0002;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    
+}
+@font-face{
+    font-family: "fuenteNew";
+    src: url("/Proyect-3/Deadknight.otf");
+}
+
+.equisNav{
+    width: 50px;
+    height: 50px;
+}
+
+.circuloNav{
+    width: 50px;
+    height: 50px;
+}
+
+.equis{
+    width: 200px;
+    height: 200px; 
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.circulo{
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    margin-top: 20px;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.botonVolver{
+    padding: 15px;
+    font-size: 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 5px solid white;
+    color: white;
+    
+}

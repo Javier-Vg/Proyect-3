@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Mqn</title>
+    <link rel="stylesheet" href="/Proyect-3/css/styleMqn.css"> 
+</head>
+<body>
+    <!--Capa que cubre para cuando acabe el juego-->
+    <div style="display: none;" class="capa">
+    </div >
+    <br>
+    <a class="botonVolver" href="/Proyect-3/menu.html">Volver al Menu</a>
+
+    <div class="divCore">
+
+        <div class="cont2">
+            <div style="margin-top: 50px;">
+                <img class="circuloNav" src="/Proyect-3/img/crculoAmmarillo-removebg-preview.png" alt="equis">
+                <img class="equisNav" src="/Proyect-3/img/equiisCeleste.svg" alt="circulo">
+            </div>
+    
+            <div style="margin-top: 20px;">
+                <h5 style="font-size: 25px;color: aliceblue;  ">TIC-TAC-TOE </h5>
+            </div>
+    
+            
+            <div style="margin-top: 50px;">
+                <button style="border-radius: 20px;" id="repit"><img style="width: 50px; height: 50px;" src="/Proyect-3/img/repetir-removebg-preview.png" alt="repeat"></button>
+            </div>
+    
+        </div>
+    
+        <div class="cont1"> 
+            <div onmousedown="sonido1.play()"  id="box1" class="cajasCont1" i="0" j="0"></div> 
+            <div onmousedown="sonido2.play()"  id="box2" class="cajasCont1" i="0" j="1"></div> 
+            <div onmousedown="sonido3.play()"  id="box3" class="cajasCont1" i="0" j="2"></div> 
+            <div onmousedown="sonido4.play()"  id="box4" class="cajasCont1" i="1" j="0"></div> 
+            <div onmousedown="sonido5.play()"  id="box5" class="cajasCont1" i="1" j="1"></div> 
+            <div onmousedown="sonido6.play()"  id="box6" class="cajasCont1" i="1" j="2"></div> 
+            <div onmousedown="sonido7.play()"  id="box7" class="cajasCont1" i="2" j="0"></div> 
+            <div onmousedown="sonido8.play()"  id="box8" class="cajasCont1" i="2" j="1"></div> 
+            <div onmousedown="sonido9.play()"  id="box9" class="cajasCont1" i="2" j="2"></div> 
+    
+        </div>
+        <div class="cont3">
+    
+            <div style="font-size: 30px; padding: 15px; width: 180px; background-color: aqua;text-align: center;border-radius: 10px; " >
+                X  Total Wins
+                <div style="font-size: 50px;" class="numeroWxMqn">0</div>
+            </div>
+    
+            <div style="font-size: 30px; padding: 15px; width: 180px; background-color: rgb(255, 255, 255);text-align: center;border-radius: 10px; ">
+                Empates
+                <div style="font-size: 50px;" class="numeroEmpatesMqn">0</div>
+            </div>
+    
+            <div style="font-size: 30px; padding: 15px; width: 180px; background-color: yellow;text-align: center;border-radius: 10px; ">
+                O Total Wins
+                <div style="font-size: 50px;" class="numeroWoMqn">0</div>
+            </div>
+    
+        </div>
+    </div>
+
+
+     <br>
+
+    <script src="/Proyect-3/scrip/scriptMqn.js"></script>
+</body>
+</html>
