@@ -8,22 +8,30 @@
 </head>
 <body>
    
-    <h1>TIC TAC TOE</h1>
-    <img class="gatoRaton" src="/Proyect-3/img/gatoYRaton-removebg-preview.png" alt="">
+    <h1 style="z-index: 1; ">TIC TAC TOE</h1>
+    <img style="z-index: 1; " class="gatoRaton" src="/Proyect-3/img/gatoYRaton-removebg-preview.png" alt="">
+ 
 
-    <div class="cont1">
+    <img style="z-index: 2; position: absolute; " src="/Proyect-3/img/rules.jpg" alt="">
+    <div style="z-index: 1; position: relative;" class="cont1">
         <div id="box1" class="box"><a style="text-decoration: none; color: aliceblue;" href="/Proyect-3/indexMqn.html">Un Jugador</a> <svg class="iconos" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M16.043,14H7.957A4.963,4.963,0,0,0,3,18.957V24H21V18.957A4.963,4.963,0,0,0,16.043,14Z"/><circle cx="12" cy="6" r="6"/></svg>        </div>
         <div id="box2" class="box"><a style="text-decoration: none; color: aliceblue;" href="/Proyect-3/index.html">Dos Jugadores</a><svg class="iconos" id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m7.5 13a4.5 4.5 0 1 1 4.5-4.5 4.505 4.505 0 0 1 -4.5 4.5zm6.5 11h-13a1 1 0 0 1 -1-1v-.5a7.5 7.5 0 0 1 15 0v.5a1 1 0 0 1 -1 1zm3.5-15a4.5 4.5 0 1 1 4.5-4.5 4.505 4.505 0 0 1 -4.5 4.5zm-1.421 2.021a6.825 6.825 0 0 0 -4.67 2.831 9.537 9.537 0 0 1 4.914 5.148h6.677a1 1 0 0 0 1-1v-.038a7.008 7.008 0 0 0 -7.921-6.941z"/></svg></div>
         <div class="box">¿Como se juega?</div>
-        <div class="box">Sonido</div>
+        <div class="box">
+            <button style="font-size: 40px; background-color: black; color: aliceblue; border: none;" id="botonSonido">Activar Musica</button>
+        </div>
     </div>
 
     <video autoplay muted loop class="video">
         <source src="/Proyect-3/videos/13495-248644905.mp4" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
     </video>
 
+    <audio id="Audio" src="/Proyect-3/audio/utomp3.com - GTA San Andreas Instrumental Theme_360p.mp4"></audio>
 
-    
+    <dialog style="display: none;">
+        <img src="/Proyect-3/img/rules.jpg" alt="reglas">
+    </dialog>
+
+    <script src="/Proyect-3/scrip/scriptMenu.js"></script>
 </body>
 </html>

@@ -82,7 +82,7 @@ function handleClick(evento) {
     }else{
 
         equis.className = "equis";
-        equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
+        equis.src = "/Proyect-3/img/equiisCeleste.svg";
         IdDelDom.appendChild(equis);
         matriz[fila][columna] = "x";
         trueFalse = false;
@@ -98,7 +98,6 @@ function handleClick(evento) {
             alert("El jugador O for the win");
             capa.style.display = "inline-block";
         }else{
-            console.log("ahhhhhhhhh")
             //Verifica si el conetendor esta lleno, y declara el empate:
             let EspacioOcupado = 0;
 
@@ -162,30 +161,21 @@ function Maquina() {
 
     let CordenadaRandom = "["+FilaRandom+"]["+ColumnaRandom+"]";
 
-    console.log(CordenadaRandom)
-
     if (matriz[FilaRandom][ColumnaRandom] != "") {
-        console.log("cambio")
+  
         Maquina();
         
-        
     }else{
-        console.log(CordenadaRandom)
-
-        //  ESTE CODIGO ES EL QUE ENCICLAAAAAAAAAAAAAAAAAAAAAAAAAA
        
         for (const llave in CordeCajas) {
-            
-            console.log("entra a el for")
 
             if (CordeCajas[llave] == CordenadaRandom) {
-                console.log("entra al if")
                 
                 //Extrae la llave del objeto "CordeCajas"
                 let CajaElegida = document.getElementById(llave);
 
                 circulo.className = "circulo";
-                circulo.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
+                circulo.src = "/Proyect-3/img/crculoAmmarillo-removebg-preview.png";
                 CajaElegida.appendChild(circulo);
                 matriz[FilaRandom][ColumnaRandom] = "o";
                 circulo.offsetHeight;

@@ -55,7 +55,7 @@ function handleClick(evento) {
             
         }else{
             equis.className = "equis";
-            equis.src = "/Proyect-3/img/equis2-removebg-preview.png";
+            equis.src = "/Proyect-3/img/equiisCeleste.svg";
             IdDelDom.appendChild(equis);
             matriz[fila][columna] = "x";
             trueFalse = false;
@@ -71,7 +71,7 @@ function handleClick(evento) {
             
         }else{
             equis.className = "circulo";
-            equis.src = "/Proyect-3/img/circulo_Azul-removebg-preview.png";
+            equis.src = "/Proyect-3/img/crculoAmmarillo-removebg-preview.png";
             IdDelDom.appendChild(equis);
             matriz[fila][columna] = "o";
             trueFalse = true;
@@ -126,11 +126,13 @@ function handleClick(evento) {
 };
 
 //-----------------------------------------------------------------------------------------------------
+
 for (let index = 0; index < boxes.length; index++) {
 
     boxes[index].addEventListener("click", handleClick);
 
-}
+};
+
 //------------------------------------------------------------------------------------------------------
 let capa = document.querySelector(".capa");
 
@@ -201,7 +203,7 @@ function ganador(matriz) {
                     contXF2++;
                 }else if (i == 2) {
                     contXF3++;
-                }
+                };
             };
 
             if (matriz[i][j] == "o"){
