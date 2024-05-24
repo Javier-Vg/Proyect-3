@@ -3,7 +3,6 @@ body{
     background-color:#000;
 }
 
-
 .gatoRaton{
     width: 105px; 
     height: 90px;
@@ -34,7 +33,6 @@ h1{
     fill: aliceblue;
 }
 
-
 @font-face{
     font-family: "fuenteNew";
     src: url("/Proyect-3/Deadknight.otf");
@@ -50,6 +48,7 @@ h1{
     margin-top: 300px;
 
 }
+
 .box{
     border: 10px solid white;
     border-radius: 15px;
@@ -58,8 +57,6 @@ h1{
     font-size: 45px;
     background-color: #000;
     transition: all .5s ease;
-    
-    
 }
 
 .box:hover {
@@ -71,9 +68,6 @@ h1{
     width: 60px;
     height: 60px;
 }
-
-
-
 
 .video{
     z-index: -1;

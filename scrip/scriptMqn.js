@@ -51,6 +51,7 @@ sonido9.src = "/Proyect-3/sonidos/interface-124464.mp3";
 
 let trueFalse = true;
 
+//La matriz donde se van a almacenar los signos de x y o. 
 let matriz = [
     ["","",""],
     ["","",""],
@@ -59,9 +60,6 @@ let matriz = [
 
 function handleClick(evento) {
 
-    let totalEmpate = 0;
-    let totalWinsX = 0;
-    let totalWinsO = 0;
     //currentTarget te manda el elemnto html que a sido clickeado, ejemplo, es lo mismo que si estuviera haciendo getElementById.
     //GetAtribute te devuelve el elemento propio, en este caso el " i ="0" ". 
 
@@ -122,13 +120,15 @@ function handleClick(evento) {
                             
                     alert("EMPATE, vuelva a jugar...");
                     capa.style.display = "inline-block";
-                    ++totalEmpate;
-                    localStorage.setItem("Empate",totalEmpate );
+
+                    localStorage.setItem("EmpateMqn",((parseInt(e) + 1)));
+                    conteinerEmpate.innerHTML = e;
                     break;
                 };
             };
-            //ESTO SE ENCICLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-            setTimeout(Maquina, 1000);
+           
+            //Se llama a la funcion con una duracion de un mls, donde se tiene la funcion donde se van a crear los "o". 
+            setTimeout(Maquina, 100);
         };
     };  
 };
@@ -143,6 +143,7 @@ for (let index = 0; index < boxes.length; index++) {
 
 function Maquina() {
     
+    //Objeto creado y tomado como referencia para extraer los ids de las cajas del html para despues agregarlos en la pagina con el AppendChild.
     let CordeCajas = {
         "box1" : "[0][0]",
         "box2" : "[0][1]",

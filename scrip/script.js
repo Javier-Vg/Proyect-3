@@ -6,6 +6,10 @@ let boxes = document.querySelectorAll(".cajasCont1");
 
 let trueFalse = true;
 
+let equis = document.createElement("img");
+
+let turno = document.getElementById("turno");
+
 //Contenedores a donde van los contadores de las win y empate:
 let conteinerWinx = document.querySelector(".numeroWx");
 let conteinerWino = document.querySelector(".numeroWo");
@@ -22,14 +26,10 @@ let x = localStorage.getItem('XWins');
 let o = localStorage.getItem('OWins');
 let e = localStorage.getItem('Empate');
 
-console.log(x)
-
 //Agrego el numero en el div correspondiente de cada contador.
 conteinerWinx.innerHTML = x;
 conteinerWino.innerHTML = o;
 conteinerEmpate.innerHTML = e;
-
-
 
 function handleClick(evento) {
 
@@ -81,22 +81,24 @@ function handleClick(evento) {
         }
     }
 
+    //Verifica que el return de la funcion "ganador" sea igual a "o" o tambien "x", y da el gane al jugador por un mensaje alert.
+    //Añade una capa inviible para que no pueda seguir interactuando con el juego, hace que se termine el juego.
     if (ganador(matriz) == "x") {
 
-        alert("El jugador X for the win");
+        alert("El jugador X a Ganado!");
         capa.style.display = "inline-block";
-
+        turno.textContent = "X WIN" ;
 
     }else if((ganador(matriz) =="o")){
-        alert("El jugador O for the win");
-        capa.style.display = "inline-block";
-
+        alert("El jugador O a Ganado!");
+        capa.style.display = "inline-block";   
+        turno.textContent = "O WIN"; 
         
     }else{
 
         //Verifica si el conetendor esta lleno, y declara el empate:
+        //Se tiene ue cumplir todo de una sola vez para que ocurra el empate.
         let EspacioOcupado = 0;
-
         for (let i = 0; i < matriz.length; i++) {
             if (matriz[0][i] != "") {
                 if(matriz[1][i] != ""){
@@ -116,6 +118,7 @@ function handleClick(evento) {
             
                 alert("EMPATE, vuelva a jugar...");
                 capa.style.display = "inline-block";
+                //Se suman lo que ya tenia en el localStorage con 1.
                 localStorage.setItem("Empate",((parseInt(e) + 1)));
                 conteinerEmpate.innerHTML = e;
                 break;
@@ -123,10 +126,24 @@ function handleClick(evento) {
             };
         };
     };
+
+    //Alterno el turno siguiente:
+    if (trueFalse == true) {
+        turno.textContent = "X TURN";
+    }else{
+        turno.innerHTML = "O TURN";
+    }
+
+    //Verifica si
+    if (ganador(matriz) == "x") {
+        turno.innerHTML = "X WIN ";
+    }else if((ganador(matriz) == "o")){
+        turno.innerHTML = "O WIN";
+    }
 };
 
 //-----------------------------------------------------------------------------------------------------
-
+//Recorre todas las cajas y escoje la que fue clickeada desde la pagina.
 for (let index = 0; index < boxes.length; index++) {
 
     boxes[index].addEventListener("click", handleClick);
@@ -136,6 +153,7 @@ for (let index = 0; index < boxes.length; index++) {
 //------------------------------------------------------------------------------------------------------
 let capa = document.querySelector(".capa");
 
+//Extraer sonidos con el metodo Audio para cuando se haga click en los espacios.
 let sonido1 = new Audio();
 let sonido2 = new Audio();
 let sonido3 = new Audio();
@@ -156,6 +174,7 @@ sonido7.src = "/Proyect-3/sonidos/interface-124464.mp3";
 sonido8.src = "/Proyect-3/sonidos/interface-124464.mp3";
 sonido9.src = "/Proyect-3/sonidos/interface-124464.mp3";
 
+//Matriz se inicializa en nulo, para que cuando se añaden los "x" y "o" pueda validar los ganes.
 let matriz = [
     ["","",""],
     ["","",""],
@@ -191,6 +210,7 @@ function ganador(matriz) {
     let contXDiagonal2 = 0;
 
     //Validacion para ganadores:
+    //Recorre las filas y columnas de la matriz y van sumando los contadores.
 
     for (let i = 0; i < matriz.length; i++) {
         
@@ -276,6 +296,7 @@ function ganador(matriz) {
     }
 };
 
+//Recarga la pagina.
 btn1.addEventListener("click", function(){
     
     window.location.reload();
